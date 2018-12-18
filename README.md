@@ -1,111 +1,95 @@
-[![Build Status](https://travis-ci.org/cipchk/ng-alain.svg?branch=master)](https://travis-ci.org/cipchk/ng-alain)
-[![Dependency Status](https://david-dm.org/cipchk/ng-alain/status.svg)](https://david-dm.org/cipchk/ng-alain)
+<p align="center">
+  <a href="https://ng-alain.com">
+    <img width="100" src="https://ng-alain.com/assets/img/logo-color.svg">
+  </a>
+</p>
 
-# ng-alain
+<h1 align="center">
+Ng Alain
+</h1>
 
-[Ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd) admin panel front-end framework.
+<div align="center">
 
-更多信息见[中文 README](README-zh_CN.md)
+  Out-of-box UI solution for enterprise applications, Let developers focus on business.
 
-[DEMO](https://cipchk.github.io/ng-alain/)
+  [![Build Status](https://travis-ci.org/ng-alain/ng-alain.svg?branch=master)](https://travis-ci.org/ng-alain/ng-alain)
+  [![Dependency Status](https://david-dm.org/ng-alain/ng-alain/status.svg)](https://david-dm.org/ng-alain/ng-alain)
+  [![GitHub Release Date](https://img.shields.io/github/release-date/ng-alain/ng-alain.svg?style=flat-square)](https://github.com/ng-alain/ng-alain/releases)
+  [![NPM version](https://img.shields.io/npm/v/ng-alain.svg)](https://www.npmjs.com/package/ng-alain)
+  [![NPM version](https://img.shields.io/npm/v/ng-alain/next.svg)](https://www.npmjs.com/package/ng-alain)
+  [![prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://prettier.io/)
+  [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/ng-alain/ng-alain/blob/master/LICENSE)
+  [![Gitter](https://img.shields.io/gitter/room/ng-alain/ng-alain.svg?style=flat-square)](https://gitter.im/ng-alain/ng-alain)
+  [![extension-for-VSCode](https://img.shields.io/badge/extension%20for-VSCode-blue.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=cipchk.ng-alain-vscode)
+
+</div>
+
+English | [简体中文](README-zh_CN.md)
 
 ## Quick start
 
-Make sure you have Node version >= 6.9.0 and NPM >= 3 or higher.
-
 ```bash
-# clone ng-alain repo
-# --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/cipchk/ng-alain.git
-
-# change directory
-cd ng-alain
-
-# install npm package
-npm install
-# in china please use cnpm （https://github.com/cnpm/cnpm）
-# cnpm install
-
-# start the serve
-npm start
-
-# use HMR
-npm run serve:hmr
-
-# upgrade `src/styles/alain` directory to laster version
-npm run upgrade:style
+# Make sure you are using the latest version of Angular cli
+ng new demo --style less
+cd demo
+ng add ng-alain
+ng serve
+# or hmr mode
+npm run hmr
 ```
 
-> [vscode] recommended install [ng-zorro-vscode](https://marketplace.visualstudio.com/items?itemName=cipchk.ng-zorro-vscode) plugins, that includes `nz-alain-*` snippets.
+> Please refer to [Cli](https://ng-alain.com/cli) for more details.
+>
+> [vscode] recommended install [ng-zorro-vscode](https://marketplace.visualstudio.com/items?itemName=cipchk.ng-zorro-vscode) & [ng-alain-vscode](https://marketplace.visualstudio.com/items?itemName=cipchk.ng-alain-vscode) plugins.
 
-## Environment
+## Links
 
-| package | version |
-| ------- | ------- |
-| `ng-alain` | 0.1.4 | 
-| `ng-zorro-antd` | ^0.6.0 |
-| `@angular` | ^5.0.0 |
-| `@angular/cli` | ^1.5.2 |
-
-**Third Library[Optional]**
-
-| package | dependencie | remark |
-| ------- | ------- | ------- |
-| `font-awesome` |  |  |
-| `simple-line-icons` |  |  |
-| `weather-icons` |  |  |
-| `angular-baidu-maps` |  | BaidDu Map |
-| `angular-qq-maps` |  | QQ Map |
-| `angular-web-storage` |  | LocalStorage |
-| `g2-angular` | `g2` |  |
-| `ng2-file-upload` |  |  |
-| `ng2-img-cropper` |  |  |
-| `ngx-color-picker` |  |  |
-| `ng-tree-antd` | `angular-tree-component` |  |
-| `ng2-dnd` |  |  |
-| `sweetalert` |  |  |
-| `file-saver` |  |  |
-
-## Guide Lines
-
-+ [antd gruid lines](https://ant.design/docs/spec/introduce)
-+ [`ng-alain` Layout Rule](_documents/layout.md)
-+ [CSS Component Patch](_documents/component-patch.md)
-+ [CSS Utility Rule](_documents/utils.md)
-+ [Pipe](_documents/pipe.md)
-+ [ACL](_documents/acl.md)
-+ [Upgrade](_documents/upgrade.md)
++ [Document](https://ng-alain.com)
++ [DEMO](https://ng-alain.github.io/ng-alain/)
 
 ## Features
 
 + `ng-zorro-antd` based
 + Responsive Layout
 + I18n
-+ ACL
++ [@delon](https://github.com/ng-alain/delon)
 + Lazy load Assets
 + UI Router States
-+ Multiple color options
++ Customize Theme
 + Less preprocessor
 + Well organized & commented code
 + Simple upgrade
-+ Hot Module Replacement
-+ Support [Docker](_documents/docker.md) deploy
++ Support Docker deploy
+
+## Architecture
+
+![Architecture](https://raw.githubusercontent.com/ng-alain/delon/master/_screenshot/architecture.png)
+
+> [delon](https://github.com/ng-alain/delon) is a production-ready solution for admin business components packages, Built on the design principles developed by Ant Design.
 
 ## App Shots
 
-![desktop](_screenshot/desktop.png)
-![ipad](_screenshot/ipad.png)
-![iphone](_screenshot/iphone.png)
+![desktop](https://raw.githubusercontent.com/ng-alain/delon/master/_screenshot/desktop.png)
+![ipad](https://raw.githubusercontent.com/ng-alain/delon/master/_screenshot/ipad.png)
+![iphone](https://raw.githubusercontent.com/ng-alain/delon/master/_screenshot/iphone.png)
 
-## Troubleshooting
+## Donation
 
-Please follow this guidelines when reporting bugs and feature requests:
+ng-alain is an MIT-licensed open source project. In order to achieve better and sustainable development of the project, we expect to gain more backers. You can support us in any of the following ways:
 
-1. Use [GitHub Issues](https://github.com/cipchk/ng-alain/issues) board to report bugs and feature requests (not our email address)
-2. Please **always** write steps to reproduce the error. That way we can focus on fixing the bug, not scratching our heads trying to reproduce it.
+- [patreon](https://www.patreon.com/cipchk)
+- [opencollective](https://opencollective.com/ng-alain)
+- [paypal](https://www.paypal.me/cipchk)
+- [支付宝或微信](https://ng-alain.com/assets/donate.png)
 
-Thanks for understanding!
+Or purchasing our [business theme](https://e.ng-alain.com/).
+
+## Backers
+
+Thank you to all our backers! 🙏
+
+<a href="https://opencollective.com/ng-alain#backers" target="_blank"><img src="https://opencollective.com/ng-alain/backers.svg?width=890"></a>
 
 ### License
 
-The MIT License (see the [LICENSE](https://github.com/cipchk/ng-alain/blob/master/LICENSE) file for the full text)
+The MIT License (see the [LICENSE](https://github.com/ng-alain/ng-alain/blob/master/LICENSE) file for the full text)

@@ -1,29 +1,31 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { getFakeList } from '../../../../../../_mock/api.service';
+import { _HttpClient } from '@delon/theme';
 
 @Component({
-    selector: 'pro-list-card-list',
-    templateUrl: './card-list.component.html',
-    styles: [`
-    :host ::ng-deep .ant-card-meta-title {
+  selector: 'app-list-card-list',
+  templateUrl: './card-list.component.html',
+  styles: [
+    `
+      :host ::ng-deep .ant-card-meta-title {
         margin-bottom: 12px;
-    }
-    `],
-    encapsulation: ViewEncapsulation.Emulated
+      }
+    `,
+  ],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class ProCardListComponent implements OnInit {
+  list: any[] = [null];
 
-    list: any[] = [ null ];
+  loading = true;
 
-    loading = true;
+  constructor(private http: _HttpClient, public msg: NzMessageService) {}
 
-    constructor(public msg: NzMessageService) {}
-
-    ngOnInit() {
-        setTimeout(() => {
-            this.list = this.list.concat(getFakeList(8));
-            this.loading = false;
-        }, 1000);
-    }
+  ngOnInit() {
+    this.loading = true;
+    this.http.get('/api/list', { count: 8 }).subscribe((res: any) => {
+      this.list = this.list.concat(res);
+      this.loading = false;
+    });
+  }
 }

@@ -1,34 +1,40 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-
-import { SettingsService } from './core/services/settings.service';
-import { ThemesService } from './core/services/themes.service';
-import { TitleService } from '@core/services/title.service';
+import { filter } from 'rxjs/operators';
+import { TitleService } from '@delon/theme';
+import { VERSION as VERSION_ALAIN } from '@delon/theme';
+import { VERSION as VERSION_ZORRO, NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`
+  template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent implements OnInit {
-
-  @HostBinding('class.layout-fixed') get isFixed() { return this.settings.layout.fixed; }
-  @HostBinding('class.layout-boxed') get isBoxed() { return this.settings.layout.boxed; }
-  @HostBinding('class.aside-collapsed') get isCollapsed() { return this.settings.layout.collapsed; }
-
   constructor(
-    private theme: ThemesService,
-    private settings: SettingsService,
+    el: ElementRef,
+    renderer: Renderer2,
     private router: Router,
-    private titleSrv: TitleService) {
+    private titleSrv: TitleService,
+    private modalSrv: NzModalService,
+  ) {
+    renderer.setAttribute(
+      el.nativeElement,
+      'ng-alain-version',
+      VERSION_ALAIN.full,
+    );
+    renderer.setAttribute(
+      el.nativeElement,
+      'ng-zorro-version',
+      VERSION_ZORRO.full,
+    );
   }
 
   ngOnInit() {
-    this.router
-        .events
-        .filter(evt => evt instanceof NavigationEnd)
-        .map(() => this.router.url)
-        .subscribe(url => {
-            this.titleSrv.setTitleByUrl(url);
-        });
+    this.router.events
+      .pipe(filter(evt => evt instanceof NavigationEnd))
+      .subscribe(() => {
+        this.titleSrv.setTitle();
+        this.modalSrv.closeAll();
+      });
   }
 }

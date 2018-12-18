@@ -6,9 +6,10 @@ import {
 } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { STColumn } from '@delon/abc';
-import { getTimeDistance, yuan } from '@delon/util';
+import { getTimeDistance } from '@delon/util';
 import { _HttpClient } from '@delon/theme';
 import { I18NService } from '@core/i18n/i18n.service';
+import { yuan } from '@shared/utils';
 
 @Component({
   selector: 'app-dashboard-analysis',
@@ -17,10 +18,7 @@ import { I18NService } from '@core/i18n/i18n.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardAnalysisComponent implements OnInit {
-  data: any = {
-    salesData: [],
-    offlineData: [],
-  };
+  data: any = {};
   loading = true;
   date_range: Date[] = [];
   rankingListData: any[] = Array(7)
@@ -64,12 +62,13 @@ export class DashboardAnalysisComponent implements OnInit {
     private http: _HttpClient,
     public msg: NzMessageService,
     private i18n: I18NService,
-    private cd: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.http.get('/chart').subscribe((res: any) => {
-      res.offlineData.forEach((item: any) => {
+      res.offlineData.forEach((item: any, idx: number) => {
+        item.show = idx === 0;
         item.chart = Object.assign([], res.offlineChartData);
       });
       this.data = res;
@@ -80,7 +79,7 @@ export class DashboardAnalysisComponent implements OnInit {
 
   setDate(type: any) {
     this.date_range = getTimeDistance(type);
-    setTimeout(() => this.cd.detectChanges());
+    setTimeout(() => this.cdr.detectChanges());
   }
 
   salesType = 'all';
@@ -96,7 +95,7 @@ export class DashboardAnalysisComponent implements OnInit {
     if (this.salesPieData) {
       this.salesTotal = this.salesPieData.reduce((pre, now) => now.y + pre, 0);
     }
-    this.cd.detectChanges();
+    this.cdr.detectChanges();
   }
 
   handlePieValueFormat(value: any) {
